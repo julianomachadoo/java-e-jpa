@@ -24,5 +24,4 @@ public class CategoriaDao {
 		categoria = em.merge(categoria);
 		this.em.remove(categoria);
 	}
-
 }

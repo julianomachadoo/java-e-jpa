@@ -57,5 +57,4 @@ public class ProdutoDao {
 				.setParameter("nome", nome)
 				.getSingleResult();
 	}
-
 }
