@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import br.com.alura.loja.dao.CategoriaDao;
 import br.com.alura.loja.dao.ProdutoDao;
 import br.com.alura.loja.modelo.Categoria;
+import br.com.alura.loja.modelo.CategoriaId;
 import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JPAUtil;
 
@@ -29,7 +30,7 @@ public class CadastroDeProduto {
 	}
 
 	private static void cadastrarProduto() {
-		Categoria celulares = new Categoria("CELULARES");
+		Categoria celulares = new Categoria("CELULARES", "xpto");
 		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal("800"), celulares );
 		
 		EntityManager em = JPAUtil.getEntityManager();
@@ -42,6 +43,9 @@ public class CadastroDeProduto {
 		produtoDao.cadastrar(celular);
 		
 		em.getTransaction().commit();
+
+		em.find(Categoria.class, new CategoriaId("CELULARES", "xpto"));
+
 		em.close();
 	}
 }
