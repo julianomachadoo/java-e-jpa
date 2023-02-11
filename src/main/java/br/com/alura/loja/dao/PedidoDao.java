@@ -6,11 +6,10 @@ import br.com.alura.loja.vo.RelatorioDeVendasVo;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 public class PedidoDao {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     public PedidoDao(EntityManager em) {
         this.em = em;
@@ -40,4 +39,9 @@ public class PedidoDao {
         .getResultList();
     }
 
+    public Pedido buscarPedidoComCliente(Long id) {
+        return em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id", Pedido.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }
